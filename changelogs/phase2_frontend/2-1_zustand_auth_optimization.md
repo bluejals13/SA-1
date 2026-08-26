@@ -71,12 +71,15 @@ sequenceDiagram
 
 ## 4. 시니어 코드 리뷰 요약 (Senior Review Summary)
 
-| 검토 항목 | 평가 | 세부 내용 |
-| :--- | :---: | :--- |
-| **새로고침 세션 유지** | ✅ PASS | `persist` + `bootstrapAuth`를 통해 F5 새로고침 시에도 무중단 세션 복원 |
-| **Race Condition 방지** | ✅ PASS | `refreshPromise`, `bootstrapPromise` 싱글톤 프로미스를 통해 중복 요청 완벽 억제 |
-| **장애 내구성 (Resilience)** | ✅ PASS | 503 및 네트워크 단절 시 사용자를 즉시 쫓아내지 않고 점진적 서비스 저하 모드로 방어 |
-| **API 언래핑 호환성** | ⚠️ 주의 | 백엔드 컨트롤러 중 아직 `ApiResponse<T>`로 감싸지 않은 API 호출 시 방어 코드 권장 |
+| **검토 항목**               | **평가** | **세부 내용**                                                            |
+| ----------------------- | :----: | -------------------------------------------------------------------- |
+| **새로고침 세션 유지**          | ✅ PASS | `persist` + `bootstrapAuth`를 통해 F5 새로고침 시 Access Token 및 인증 상태 복원    |
+| **Race Condition 방지**   | ✅ PASS | `refreshPromise`, `bootstrapPromise` 싱글톤 프로미스를 통해 동시 인증 요청 중복 방지     |
+| **장애 내구성 (Resilience)** | ✅ PASS | 503 및 네트워크 단절 시 인증 상태를 즉시 제거하지 않고 서비스 장애 상태로 완화                      |
+| **API 응답 포맷 호환성**       | ✅ PASS | 백엔드 `ApiResponse<T>` 표준 응답과 `http.ts`의 `data` 자동 언래핑을 실제 API 호출에서 검증 |
+| **실제 인증 흐름**            | ✅ PASS | Login → Refresh → `/me` 및 보호 API 접근까지 Docker 환경에서 정상 동작 확인           |
+| **Redis 인증 상태**         | ✅ PASS | Refresh Token Rotation 및 JTI Blacklist 생성·TTL을 Redis에서 직접 확인         |
+
 
 
 ---
