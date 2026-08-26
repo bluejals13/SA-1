@@ -41,30 +41,57 @@
 ```mermaid
 sequenceDiagram
     autonumber
+
     participant Browser as Browser / App.tsx
     participant Boot as auth.bootstrap.ts
     participant HTTP as api/http.ts
     participant Store as Zustand (auth.store)
     participant Server as Spring Boot (/api/auth)
 
-    Browser->>Boot: bootstrapAuth() 호출 (ready: false)
-    Boot->>HTTP: refreshToken() 호출 (HttpOnly Cookie 전송)
+    Browser->>Boot: bootstrapAuth() 호출
+    Browser->>Browser: ready = false
+
+    Boot->>HTTP: refreshToken()
     HTTP->>Server: POST /api/auth/refresh
+    Note over HTTP,Server: HttpOnly Refresh Token Cookie 자동 전송
+
     alt Refresh 성공 (200 OK)
         Server-->>HTTP: ApiResponse<LoginResponse>
-        HTTP-->>Boot: accessToken 반환
-        Boot->>Store: setToken(accessToken), setUnavailable(false)
-    else Refresh 실패 - 세션 만료 (401)
+        HTTP->>HTTP: ApiResponse.data 언래핑
+        HTTP-->>Boot: LoginResponse(accessToken)
+
+        Boot->>Store: setToken(accessToken)
+        Boot->>Store: setUnavailable(false)
+
+        Boot-->>Browser: bootstrap 완료
+        Browser->>Browser: ready = true
+        Browser->>Browser: ProtectedRoute 렌더링
+
+        Browser->>HTTP: 보호 API 요청
+        HTTP->>Server: GET /api/users/me
+        Server-->>HTTP: ApiResponse<UserResponse>
+        HTTP->>HTTP: ApiResponse.data 언래핑
+        HTTP-->>Browser: UserResponse
+
+    else Refresh 실패 - 인증 만료 (401)
         Server-->>HTTP: 401 Unauthorized
         HTTP-->>Boot: RefreshTokenError(401)
         Boot->>Store: logout()
+
+        Boot-->>Browser: bootstrap 완료
+        Browser->>Browser: ready = true
+        Browser->>Browser: 로그인 화면 / 비인증 상태 렌더링
+
     else Refresh 실패 - 인프라 장애 (503 / Timeout)
         Server-->>HTTP: 503 / Timeout
-        HTTP-->>Boot: RefreshTokenError(503)
-        Boot->>Store: setUnavailable(true) (세션 보존)
+        HTTP-->>Boot: RefreshTokenError(503 / Timeout)
+        Boot->>Store: setUnavailable(true)
+
+        Note over Store: 기존 인증 상태 보존
+        Boot-->>Browser: bootstrap 완료
+        Browser->>Browser: ready = true
+        Browser->>Browser: 서비스 장애 상태에서 렌더링
     end
-    Boot-->>Browser: bootstrap 완료 -> ready: true 설정
-    Browser->>Browser: ProtectedRoute / Page 정상 렌더링
 ```
 
 ---
