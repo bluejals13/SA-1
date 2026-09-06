@@ -34,12 +34,12 @@ https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/s
 
 본 요구사항은 다음 IAM 관리 기능을 대상으로 한다.
 
-사용자 관리
-사용자 Role 관리
-Role 관리
-Role과 Permission의 관계 관리
-Permission 조회
-Menu 관리
+* 사용자 관리
+* 사용자 Role 관리
+* Role 관리
+* Role과 Permission의 관계 관리
+* Permission 조회
+* Menu 관리
 
 # 2. User Administration
 ## FR-IAM-USER-001 — 사용자 목록 조회
@@ -145,21 +145,25 @@ IAM 관리 기능에 대한 역할 및 권한 기반 접근 통제는 PRD-SEC-00
 특정 인프라 구성
 
 # 8. Traceability
-Requirement Area	Related PRD
-User Administration	PRD-FUNC-002-user, PRD-SEC-003-rbac
-User Role Management	PRD-SEC-003-rbac
-Role Management	PRD-SEC-003-rbac
-Permission Management	PRD-SEC-003-rbac
-Menu Management	PRD-SEC-003-rbac
+
+| Requirement Area | Related PRD |
+|---|---|
+| User Administration | PRD-FUNC-002-user, PRD-SEC-003-rbac |
+| User Role Management | PRD-SEC-003-rbac |
+| Role Management | PRD-SEC-003-rbac |
+| Permission Management | PRD-SEC-003-rbac |
+| Menu Management | PRD-SEC-003-rbac |
 
 # 9. Acceptance Criteria Traceability
-Requirement Area	Acceptance Criteria
-User Administration	AC-007-user-administration
-User Role Management	AC-008-user-role-management
-Role Management	AC-009-role-management
-Role Permission Management	AC-010-role-permission-management
-Permission Management	AC-011-permission-read
-Menu Management	AC-012-menu-management
+
+| Requirement Area | Acceptance Criteria |
+|---|---|
+| User Administration | AC-007-user-administration |
+| User Role Management | AC-008-user-role-management |
+| Role Management | AC-009-role-management |
+| Role Permission Management | AC-010-role-permission-management |
+| Permission Management | AC-011-permission-read |
+| Menu Management | AC-012-menu-management |
 
 Acceptance Criteria는 실제 Controller/Service의 동작과 테스트 가능성을 기준으로 세부 조건을 정의한다.
 

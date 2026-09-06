@@ -13,12 +13,12 @@
 
 본 요구사항은 다음 인증 기능을 대상으로 한다.
 
-사용자 인증 요청
-인증 성공 및 실패 처리
-인증 상태 획득
-인증된 요청 처리
-인증 상태 갱신
-로그아웃 및 인증 상태 종료
+* 사용자 인증 요청
+* 인증 성공 및 실패 처리
+* 인증 상태 획득
+* 인증된 요청 처리
+* 인증 상태 갱신
+* 로그아웃 및 인증 상태 종료
 
 JWT의 구체적인 구조와 검증 정책, Refresh Token Rotation 및 Replay 방어, Token Invalidation 등의 세부 보안 요구사항은 각각 PRD-SEC-\* 문서에서 정의한다.
 
@@ -81,21 +81,23 @@ Refresh Token의 구체적인 정책은 PRD-SEC-002-refresh-token에서 정의�
 이러한 구현 및 설계 결정은 이후 Architecture 및 ADR 문서에서 정의한다.
 
 # 4. Security Traceability
-Requirement	Related Security PRD
-FR-AUTH-002	PRD-SEC-001-jwt
-FR-AUTH-004	PRD-SEC-001-jwt, PRD-SEC-003-rbac
-FR-AUTH-005	PRD-SEC-002-refresh-token
-FR-AUTH-006	PRD-SEC-004-token-invalidation
+| Requirement | Related Security PRD |
+|---|---|
+| FR-AUTH-002 | PRD-SEC-001-jwt |
+| FR-AUTH-004 | PRD-SEC-001-jwt, PRD-SEC-003-rbac |
+| FR-AUTH-005 | PRD-SEC-002-refresh-token |
+| FR-AUTH-006 | PRD-SEC-004-token-invalidation |
 
 # 5. Acceptance Criteria Traceability
-Requirement	Acceptance Criteria
-FR-AUTH-001	AC-001-authentication
-FR-AUTH-002	AC-001-authentication
-FR-AUTH-003	AC-001-authentication
-FR-AUTH-004	AC-001-authentication
-FR-AUTH-005	AC-002-refresh-token
-FR-AUTH-006	AC-002-refresh-token
-FR-AUTH-007	AC-001-authentication
+| Requirement | Acceptance Criteria |
+|---|---|
+| FR-AUTH-001 | AC-001-authentication |
+| FR-AUTH-002 | AC-001-authentication |
+| FR-AUTH-003 | AC-001-authentication |
+| FR-AUTH-004 | AC-001-authentication |
+| FR-AUTH-005 | AC-002-refresh-token |
+| FR-AUTH-006 | AC-002-refresh-token |
+| FR-AUTH-007 | AC-001-authentication |
 
 Acceptance Criteria는 실제 API 동작과 테스트 가능성을 기준으로 세부 조건을 정의한다.
 

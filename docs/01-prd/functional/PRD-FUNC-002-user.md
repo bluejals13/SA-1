@@ -11,11 +11,11 @@
 
 본 요구사항은 다음 사용자 기능을 대상으로 한다.
 
-사용자 계정 생성
-사용자 식별 정보 관리
-자신의 사용자 정보 조회
-자신의 비밀번호 변경
-사용자 상태 및 역할 정보와의 연계
+* 사용자 계정 생성
+* 사용자 식별 정보 관리
+* 자신의 사용자 정보 조회
+* 자신의 비밀번호 변경
+* 사용자 상태 및 역할 정보와의 연계
 
 관리자에 의한 사용자 관리와 역할 할당은 PRD-FUNC-003-iam에서 정의한다.
 
@@ -78,22 +78,26 @@
 구현 및 기술 선택은 Architecture 및 ADR 문서에서 정의한다.
 
 # 4. Traceability
-Requirement	Related PRD
-FR-USER-001	PRD-FUNC-001-authentication
-FR-USER-004	PRD-FUNC-001-authentication
-FR-USER-005	PRD-FUNC-003-iam, PRD-SEC-003-rbac
-FR-USER-006	Security password policy
-FR-USER-007	PRD-SEC-004-token-invalidation
+
+| Requirement | Related PRD |
+|---|---|
+| FR-USER-001 | PRD-FUNC-001-authentication |
+| FR-USER-004 | PRD-FUNC-001-authentication |
+| FR-USER-005 | PRD-FUNC-003-iam, PRD-SEC-003-rbac |
+| FR-USER-006 | Security password policy |
+| FR-USER-007 | PRD-SEC-004-token-invalidation |
 
 # 5. Acceptance Criteria Traceability
-Requirement	Acceptance Criteria
-FR-USER-001	AC-004-user-signup
-FR-USER-002	AC-004-user-signup
-FR-USER-003	AC-004-user-signup
-FR-USER-004	AC-005-user-profile
-FR-USER-005	AC-005-user-profile
-FR-USER-006	AC-006-password-change
-FR-USER-007	AC-006-password-change
+
+| Requirement | Acceptance Criteria |
+|---|---|
+| FR-USER-001 | AC-004-user-signup |
+| FR-USER-002 | AC-004-user-signup |
+| FR-USER-003 | AC-004-user-signup |
+| FR-USER-004 | AC-005-user-profile |
+| FR-USER-005 | AC-005-user-profile |
+| FR-USER-006 | AC-006-password-change |
+| FR-USER-007 | AC-006-password-change |
 
 # 6. Implementation Evidence
 ```txt
