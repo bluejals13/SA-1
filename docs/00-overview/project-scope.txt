@@ -1,0 +1,25 @@
+
+# project-scope.md
+```txt
+무엇을 만들고 무엇을 만들지 않는지.
+
+예:
+
+IN SCOPE
+- IAM
+- JWT
+- Refresh Token
+- RBAC
+- Redis
+- Security verification
+- Performance verification
+
+OUT OF SCOPE
+- Kubernetes
+- Kafka
+- MSA
+- Redis Cluster
+
+나중에 실제 범위가 바뀌면 이 문서를 수정.
+```
+
