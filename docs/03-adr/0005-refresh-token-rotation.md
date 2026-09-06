@@ -100,7 +100,11 @@ Replay Detection을 위해 해당 상태를 설정된 TTL 동안 보존한다.
 정적 Refresh Token(Option A)은 구현이 단순하지만 보안상 취약하다. Strict RTR(Option B)은 해커가 토큰을 탈취하더라도, 정상 사용자가 토큰을 갱신하는 순간 해커의 토큰이 무효화되고, 반대로 해커가 먼저 갱신하더라도 정상 사용자의 갱신 시도 시 탈취가 탐지되어 전체 세션이 차단되므로 보안성이 매우 높다.
 
 ### 4.2 Responsibility Separation
-서버(Backend)는 인증 데이터의 무결성과 보안 정책(1회용 토큰)을 강제하는 것에 집중한다. 여러 API 요청이 동시에 토큰 갱신을 유발하는 동시성 문제는 클라이언트(Frontend)의 상태 관리 영역에 해당하므로, Frontend에서 갱신 요청을 직렬화(Serialize)하여 책임을 분리하는 것이 구조적으로 깔끔하다.
+동시 Refresh 요청에 대한 정합성과 보안 판정은 Backend가 최종적으로 보장한다. 
+Frontend는 중복 Refresh 요청을 줄이기 위해 갱신 요청을 직렬화하지만, 
+
+Backend는 예상하지 못한 중복 요청이 유입되는 경우에도 동일 Refresh Token에 대해 
+하나의 Rotation만 성공하도록 원자적으로 처리해야 한다.
 
 ### 4.3 Redis Synergy
 `ADR-0003`에서 단일 Redis 인스턴스를 도입하기로 결정했다. Redis는 In-Memory 기반으로 트랜잭션과 빠른 상태 변경을 지원하므로, 토큰 폐기 및 발급, Family 전체 무효화와 같은 빈번한 I/O 작업을 지연 없이 처리하기에 최적화되어 있다.
@@ -119,7 +123,7 @@ Refresh Token이 유출되더라도, Replay Detection을 통해 즉각적인 세
 전체 과정은 단일 원자적 작업으로 처리한다. 
 이를 통해 동일한 Refresh Token에 대한 동시 요청 중 하나만 Rotation에 성공하도록 보장한다.
 
-> Redis Transaction 또는 Lua Script 등 Redis의 원자적 처리 방식을 사용하여 구현한다.
+> Redis Transaction 또는 Lua Script EXEC등 Redis의 원자적 처리 방식을 사용하여 구현한다.
 ---
 
 ### Negative

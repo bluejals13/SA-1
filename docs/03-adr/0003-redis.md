@@ -23,7 +23,7 @@ APMS.SR 시스템은 Authentication Flow를 처리하는 과정에서 Access Tok
 
 1. 짧은 수명(Time-bounded) 데이터의 생명주기(TTL) 관리 용이성
 2. 인증 과정에서 발생하는 높은 읽기/쓰기 처리 성능 (Low Latency)
-3. 영속성 데이터(MySQL)와의 책임 및 장애 격리(Failure Isolation)
+3. 데이터(MySQL) 책임과 장애 영향 범위를 분리한다
 4. Docker Compose 기반 실행 환경의 재현성
 5. 현재 시스템 규모에 적합한 운영 단순성
 

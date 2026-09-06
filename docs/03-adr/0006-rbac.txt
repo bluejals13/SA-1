@@ -1,0 +1,219 @@
+# ADR-0006: RBAC (Role-Based Access Control)
+
+**Status:** Accepted  
+**Date:** 2026-09-06  
+**Decision Type:** Architecture  
+**Related PRD:** PRD-SEC-003-rbac, PRD-FUNC-003-iam  
+**Related TASK:** TBD  
+**Related Repository:** `26-05adf`  
+
+---
+
+## 1. Context & Drivers
+
+APMS.SR 시스템은 다양한 유형의 사용자(관리자, 일반 사용자 등)가 접근하며, 각 사용자의 권한에 따라 API 및 메뉴 접근을 철저히 통제해야 한다. 
+
+현재 아키텍처는 인증 상태 유지를 위해 JWT를 사용(`ADR-0004`)하며, 데이터 무결성 보장을 위해 MySQL을 영속성 데이터베이스로 사용(`ADR-0002`)한다. 인가(Authorization) 처리를 위해 시스템은 사용자가 누구인지(Identity)를 넘어 무엇을 할 수 있는지(Authority)를 정확하고 유연하게 판단할 수 있는 권한 모델이 필요하다.
+
+본 결정의 주요 판단 기준은 다음과 같다.
+
+1. 비즈니스 변화에 유연하게 대응할 수 있는 권한 구조 (Role 추가 및 변경의 용이성)
+2. API 접근 제어 로직과 비즈니스 권한 개념의 결합도 최소화
+3. `ADR-0004`(JWT)에서 결정한 Payload 최적화 원칙과의 호환성
+4. 관리자(IAM) 기능 구현을 위한 명확한 데이터 모델 제공
+
+---
+
+## 2. Options Considered
+
+### Option A — Role-Direct Authorization
+
+API 엔드포인트에서 사용자의 '역할(Role)'을 직접 검사하여 인가를 수행한다. (예: `@PreAuthorize("hasRole('ADMIN')")`)
+
+**Advantages**
+* 구현이 매우 단순하고 직관적이다.
+* JWT Payload에 Role만 포함하면 되므로 추가적인 데이터베이스 조회가 불필요하다.
+
+**Disadvantages**
+* 특정 역할이 할 수 있는 일(기능)이 변경될 경우 애플리케이션 코드를 수정하고 재배포해야 한다.
+* 비즈니스가 복잡해질수록 `ROLE_SUPER_ADMIN`, `ROLE_SUB_ADMIN` 등 역할(Role)이 폭발적으로 증가하는 문제(Role Explosion)가 발생한다.
+
+---
+
+### Option B — Permission-Based Authorization (User → Role → Permission)
+
+사용자에게는 '역할(Role)'을 부여하고, 역할에는 '권한(Permission)'을 부여한다. API 엔드포인트에서는 역할이 아닌 **세부 권한(Permission)** 을 검사하여 인가를 수행한다. (예: `@PreAuthorize("hasAuthority('USER_CREATE')")`)
+
+**Advantages**
+* 역할(비즈니스 개념)과 권한(기술적 통제 수단)이 분리되어 결합도가 낮아진다.
+* 'ADMIN' 역할이 특정 기능을 수행하지 못하게 변경하더라도 코드를 수정할 필요 없이 데이터베이스(Role-Permission 매핑)만 수정하면 된다.
+* 매우 세밀한 접근 제어(Fine-grained Access Control)가 가능하다.
+
+**Disadvantages**
+* JWT Payload에 수많은 Permission을 담을 수 없으므로(`ADR-0004` 제약), 요청 시 Role을 기반으로 Permission을 매핑하기 위한 데이터베이스(MySQL) 조회 또는 인메모리 캐싱이 필요하다.
+* 권한 데이터 관리를 위한 IAM Admin 기능(CRUD)이 복잡해진다.
+
+---
+
+### Option C — ABAC (Attribute-Based Access Control)
+
+사용자의 속성, 리소스의 속성, 환경 변수 등을 종합적으로 평가하여 동적으로 접근 권한을 제어한다.
+
+**Advantages**
+* "자신이 작성한 게시글만 수정 가능"과 같은 매우 복잡한 리소스 레벨의 인가 처리에 최적화되어 있다.
+
+**Disadvantages**
+* 구현 복잡도가 기하급수적으로 증가한다.
+* 현재 프로젝트 규모와 요구사항(`PRD-SEC-003`) 수준을 크게 뛰어넘는 오버엔지니어링이다.
+
+---
+
+## 3. Decision
+
+APMS.SR 시스템의 인가(Authorization) 모델로 Permission-Based RBAC (User → Role → Permission) 방식을 채택한다.
+
+사용자는 하나 이상의 Role을 가지며, Role은 하나 이상의 Permission을 가진다. 보호된 API Endpoint의 최종 인가 기준은 Role 자체가 아니라 세부 Permission으로 정의한다.
+
+예를 들어 API는 다음과 같이 Permission을 기준으로 접근을 통제한다.
+```txt
+@PreAuthorize("hasAuthority('USER_CREATE')")
+```
+
+JWT에는 ADR-0004의 Payload 최적화 원칙에 따라 Role 정보를 전달하고, 
+Permission은 서버 측의 Role-Permission 매핑 정보를 기반으로 구성한다. 
+Role-Permission 데이터의 Source of Truth는 ADR-0002에서 채택한 MySQL로 한다.
+
+요청 처리 과정에서 Spring Security 인증/인가 계층은 JWT의 Role을 기반으로 
+사용자의 Permission을 resolve하여 GrantedAuthority를 구성하고, 
+Endpoint에 선언된 Permission과 비교하여 접근을 허용하거나 거부한다.
+
+Role-Permission 매핑의 변경은 기존 Permission으로 표현 가능한 정책 변경에 대해서는 
+API 코드 수정 없이 권한 정책을 변경할 수 있도록 한다. 
+Permission 자체가 신규 비즈니스 기능을 표현해야 하는 경우에는 
+해당 Permission을 사용하는 애플리케이션 정책 코드와 함께 추가할 수 있다.
+
+Resource-level 또는 Data-level 권한, 예를 들어 "사용자는 자신이 생성한 데이터만 수정할 수 있다"와 같은 
+소유권 기반 검증은 본 RBAC 정책의 책임 범위에 포함하지 않는다. 
+이러한 검증은 Service 계층 등의 비즈니스 로직에서 별도의 Ownership Check로 수행한다.
+
+Role-Permission 조회 성능이 문제가 되는 경우에는 MySQL을 Source of Truth로 유지하면서 
+Spring Cache 또는 Redis 등의 캐싱 계층을 추가하는 것을 후속 최적화 방안으로 검토한다.
+
+---
+
+## 4. Rationale
+
+### 4.1 Flexibility & Decoupling
+기능(Permission)과 비즈니스 직책(Role)을 분리하면, 조직의 변경이나 관리자 정책 변경 시 코드를 배포할 필요 없이 데이터베이스 조작만으로 시스템의 접근 제어 규칙을 완전히 재구성할 수 있다. 
+
+### 4.2 Handling JWT Limits
+JWT 내부에 시스템의 모든 Permission 리스트를 담게 되면 토큰이 지나치게 비대해진다. JWT에는 변경 빈도가 낮은 Role만을 담고, 인가 판정에 필요한 Permission은 시스템 내부(MySQL)에서 실시간(또는 캐시)으로 조합하는 방식이 네트워크 대역폭과 보안 측면에서 합리적인 절충안(Trade-off)이다.
+
+### 4.3 Standard IAM Model
+이 모델은 User-Role, Role-Permission으로 이어지는 표준 RBAC 모델과 완벽히 일치하므로, `ADR-0002`에서 구성한 관계형 데이터베이스 구조(MySQL)를 활용하여 IAM 도메인(PRD-FUNC-003) 기능을 자연스럽게 구현할 수 있다.
+
+---
+
+## 5. Consequences
+
+### Positive
+
+#### 유지보수성 향상
+비즈니스 요구사항에 따라 새로운 역할이 생기거나 기존 역할의 권한이 축소되더라도 소스 코드 변경(API 엔드포인트의 Security 애노테이션 수정 등)이 발생하지 않는다.
+
+#### 명확한 권한 식별
+API 문서화 및 시스템 보안 감사(Audit) 시 어떤 API가 어떤 Permission을 요구하는지 명확하게 추적할 수 있다.
+
+---
+
+### Negative
+
+#### 인가(Authorization) 시점의 DB 부하
+매 보호된 API 요청마다 Role에 해당하는 Permission 리스트를 MySQL에서 조회해야 하므로 오버헤드가 발생한다.
+*(완화 방안: Role-Permission 데이터는 변경 빈도가 낮으므로 추후 Spring Cache나 Redis를 활용한 권한 캐싱 적용을 검토할 수 있다.)*
+
+#### 도메인 인가 로직의 한계
+"사용자 A가 자신이 생성한 데이터만 삭제할 수 있다"는 식의 Resource-level, Data-level 권한 검증은 이 RBAC 모델만으로는 불가능하며, 비즈니스 로직(Service 계층) 내에서 별도의 소유권 검사(Ownership Check)를 수행해야 한다.
+
+---
+
+## 6. Verification
+
+본 ADR의 결정은 다음 항목을 실제 실행을 통해 검증한다.
+
+### 6.1 Permission Evaluation
+* `ADMIN` Role에 `USER_CREATE` Permission이 매핑된 사용자가 해당 API를 호출했을 때 API 호출이 성공하는지 검증한다.
+* `ADMIN` Role에 `USER_CREATE` Permission을 제거한 후 동일 사용자의 API 호출이 즉각적으로 거부(403 Forbidden)되는지 확인한다.
+* Role-Permission 변경이 다음 인증/인가 요청에 반영되는 시점과 캐시가 적용된 경우의 캐시 무효화 정책을 함께 검증한다.
+
+### 6.2 Authorization Boundary
+* API Endpoint의 인가 정책이 hasRole()이 아닌 Permission 기반 hasAuthority()를 기준으로 동작하는지 검증한다.
+* 인증(Authentication)과 인가(Authorization)가 서로 다른 책임으로 분리되어 있는지 확인한다.
+* Resource-level Ownership Check가 필요한 API의 경우 RBAC Permission 검사 이후 
+  Service 계층에서 별도의 소유권 검증이 수행되는지 확인한다.
+
+### 6.3 Authorization Boundary
+* IAM Admin API를 통해 Role-Permission 관계를 추가하거나 삭제했을 때 MySQL의 관계 데이터가 정상적으로 변경되는지 검증한다.
+* 존재하지 않는 Role 또는 Permission을 참조할 수 없도록 데이터 정합성 제약조건이 적용되어 있는지 검증한다.
+
+### 6.4 Performance (Overhead Check)
+* `UserAuthorityService`또는 이에 해당하는 권한 구성컴포넌트가 Role 기반 Permission을 resolve하는 데 소요되는 latency를 측정한다.
+* DB 직접 조회 방식과 캐싱 적용 방식의 성능 차이를 비교할 필요가 있는 경우 별도의 성능 검증 자료로 관리한다.
+
+---
+
+## 7. Conditions for Reconsideration
+
+다음과 같은 상황이 실제 측정 또는 운영 결과로 확인되면 본 결정을 재검토한다.
+
+### 7.1 Complex Resource Ownership
+시스템이 다루는 데이터가 고도화되어 단순한 엔드포인트 접근 제어(RBAC)가 아닌, 리소스 상태 및 소유자 기반의 동적 제어(ABAC)가 전면적으로 필요해지는 경우.
+
+### 7.2 Database Read Bottleneck
+보호된 API 요청마다 발생하는 Role-Permission 조회가 MySQL의 성능 한계를 초과하며, 캐싱만으로는 캐시 무효화(Cache Invalidation) 복잡도 문제를 해결할 수 없어 다시 Role 기반 검증이나 통통한(Fat) JWT 방식으로 회귀해야 하는 경우.
+
+---
+
+## 8. Relationship to Other ADRs
+
+| ADR | Decision |
+| --- | --- |
+| ADR-0001 | Application Architecture |
+| ADR-0002 | Database Architecture |
+| ADR-0003 | Redis |
+| ADR-0004 | JWT |
+| ADR-0005 | Refresh Token Rotation |
+| ADR-0006 | RBAC |
+
+본 `ADR-0006`은 애플리케이션의 **인가(Authorization) 아키텍처**를 결정한다.
+권한 판단의 기준이 되는 사용자 인증 식별자와 Role은 `ADR-0004`(JWT)의 Payload를 통해 전달받으며, 권한 매핑 데이터의 영구 저장은 `ADR-0002`(Database Architecture)에서 채택한 MySQL을 기반으로 구현된다.
+
+---
+
+## 9. Related Documents
+
+### Architecture
+* `docs/02-architecture/authorization-flow.md`
+* `docs/02-architecture/data-flow.md`
+
+### Requirements
+* `docs/01-prd/security/PRD-SEC-003-rbac.md`
+* `docs/01-prd/functional/PRD-FUNC-003-iam.md`
+
+### Implementation
+* `26-05adf`
+
+### Evidence
+* `PR-1A1`
+
+---
+
+## 10. Decision Summary
+
+> APMS.SR은 유연하고 세밀한 접근 제어를 위해 **Permission-Based RBAC (User → Role → Permission)** 모델을 채택한다.
+> 
+> JWT Payload에는 토큰 경량화를 위해 사용자의 Role 정보만 저장하며, API 접근 통제(`@PreAuthorize`)는 Role이 아닌 세부 Permission을 기준으로 수행한다. 
+> 
+> 매 요청 시 Spring Security 인터셉터(`UserAuthorityService`)가 JWT의 Role을 기반으로 MySQL에서 Permission을 로드하여 인가를 결정하며, 이를 통해 코드 수정 없이 데이터베이스 변경만으로 시스템의 권한 구조를 동적으로 통제할 수 있다.
+> 
+> 리소스 소유권과 같은 복잡한 Data-level 인가는 본 RBAC 필터 밖의 비즈니스 로직에서 처리하며, 데이터베이스 조회 부하가 병목이 될 경우 향후 캐싱 전략 도입을 검토한다.
