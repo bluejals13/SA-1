@@ -1,6 +1,42 @@
 
 
-\# PRD-FUNC-001 — Authentication
+```txt
+
+# FR-AUTH-001 — 사용자 인증
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthService.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthController.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/iam/user/service/UserService.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/iam/user/repository/UserRepository.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/iam/user/domain/User.java
+
+# FR-AUTH-002 — 인증 성공
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthService.java
+
+# FR-AUTH-003 — 인증 실패
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthService.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+
+# FR-AUTH-004 — 인증된 요청
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/SecurityConfig.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/UserAuthorityService.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+
+# FR-AUTH-005 — 인증 상태 갱신
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthService.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthController.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java
+
+# FR-AUTH-006 — 로그아웃
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthService.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthController.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/TokenBlacklistService.java
+
+```
+
+# PRD-FUNC-001 — Authentication
 
 # 1. 개요
 ## 1.1 목적

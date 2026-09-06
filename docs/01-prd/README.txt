@@ -32,7 +32,7 @@
    ├─ AC-001-authentication.md
    ├─ AC-002-refresh-token.md
    └─ AC-003-rbac.md
-
+```
 여기서 중요한 건:
 
 PRD에는 구현 방법을 너무 빨리 적지 않는다.
@@ -51,5 +51,46 @@ PRD에서는:
 동시 요청 상황에서도 보안 정책을 만족해야 한다.
 
 정도가 먼저야.
+```txt
+
+PRD-FUNC-001
+   │
+   ├── FR-AUTH-001 ──────────→ AuthController / AuthService
+   ├── FR-AUTH-002 ──────────→ AuthService / JwtProvider
+   ├── FR-AUTH-003 ──────────→ AuthService / JwtAuthenticationFilter
+   ├── FR-AUTH-004 ──────────→ JwtAuthenticationFilter / SecurityConfig
+   ├── FR-AUTH-005 ──────────→ AuthService / RefreshTokenRepository
+   └── FR-AUTH-006 ──────────→ AuthService / TokenBlacklistService
+
+
+PRD-FUNC-002
+   │
+   ├── FR-USER-* ────────────→ UserController
+   │                            UserService
+   │                            UserRepository
+   │                            User
+   │
+   └── Role 관련 ────────────→ UserRoleService
+
+
+PRD-FUNC-003
+   │
+   ├── User Admin ───────────→ UserAdminController / Service
+   ├── Role ─────────────────→ RoleAdminController / Service
+   │                            RolePermissionService
+   ├── Permission ───────────→ PermissionAdminController / Service
+   └── Menu ─────────────────→ MenuAdminController / Service
+
+
+PRD-SEC-001
+   │
+   ├── JWT 발급 ──────────────→ AuthService / JwtProvider
+   ├── JWT 검증 ──────────────→ JwtProvider
+   ├── Request 인증 ──────────→ JwtAuthenticationFilter
+   ├── 권한 구성 ─────────────→ UserAuthorityService
+   └── Security 정책 ─────────→ SecurityConfig
+
 ```
+
+
 

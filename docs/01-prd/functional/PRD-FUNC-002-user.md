@@ -1,5 +1,15 @@
 
 
+```txt
+
+# 실제 User 구현:
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/iam/user/domain/User.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/iam/user/service/UserService.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/iam/user/controller/UserController.java
+https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/iam/user/repository/UserRepository.java
+
+```
+
 # PRD-FUNC-002 — User
 
 # 1. 개요
