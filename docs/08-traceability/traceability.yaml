@@ -1,0 +1,31 @@
+feature:
+  id: FEAT-RTR-001
+  title: Refresh Token Rotation & Replay Defense
+
+requirement:
+  - REQ-SEC-002
+  - AC-002
+
+decision:
+  - ADR-0005
+
+implementation:
+  - IMP-RTR-001
+
+tests:
+  - TEST-RTR-001
+  - TEST-RTR-002
+  - TEST-RTR-003
+  - TEST-RTR-004
+
+verification:
+  - VER-RTR-001
+
+evidence:
+  - EVD-RTR-001
+  - EVD-RTR-002
+
+claims:
+  - CLM-RTR-001
+
+status: verified
