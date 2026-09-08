@@ -7,13 +7,13 @@
 **Decision Type:** Architecture
 **Related PRD:** PRD-SEC-002-refresh-token, PRD-SEC-004-redis-failure
 **Related TASK:** TBD
-**Related Repository:** `26-05adf`
+**Related Repository:** `apms-sr`
 
 ---
 
 ## 1. Context & Drivers
 
-APMS.SR 시스템은 Authentication Flow를 처리하는 과정에서 Access Token의 갱신(Refresh)과 무효화(Invalidation/Logout) 상태를 관리해야 한다. 
+apms-sr 시스템은 Authentication Flow를 처리하는 과정에서 Access Token의 갱신(Refresh)과 무효화(Invalidation/Logout) 상태를 관리해야 한다. 
 
 이러한 Token 관련 상태 데이터는 영구적으로 보존되어야 하는 IAM 데이터(MySQL)와 달리, 수명(TTL)이 제한적이며 매우 빈번하고 빠른 읽기/쓰기가 발생한다는 특징이 있다. 
 
@@ -227,7 +227,7 @@ Redis에 어떤 데이터를 어떻게 담고 검증할 것인지(Replay Defense
 
 ### Implementation
 
-* `26-05adf`
+* `apms-sr`
 
 ### Evidence
 
@@ -237,7 +237,7 @@ Redis에 어떤 데이터를 어떻게 담고 검증할 것인지(Replay Defense
 
 ## 10. Decision Summary
 
-> APMS.SR은 인증 과정에서 발생하는 짧은 수명(Time-bounded)의 상태 데이터(Refresh Token, Blacklist)를 관리하기 위해 **Single Redis Instance**를 채택한다.
+> apms-sr 은 인증 과정에서 발생하는 짧은 수명(Time-bounded)의 상태 데이터(Refresh Token, Blacklist)를 관리하기 위해 **Single Redis Instance**를 채택한다.
 >
 > In-Memory 저장소와 TTL 기능을 활용하여 성능을 극대화하고 만료된 세션을 자동으로 정리하며, MySQL과의 데이터 책임을 분리하여 영속성 데이터베이스를 보호한다.
 >

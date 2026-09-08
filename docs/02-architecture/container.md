@@ -4,7 +4,7 @@
 # 1. 목적
 본 문서는 SA-1 시스템을 구성하는 주요 실행 단위(Container)와 Container 간 통신 관계를 정의한다.
 system-context.txt에서 정의한 시스템 경계를 실제 실행 환경의 구성요소 수준으로 구체화한다.
-본 문서는 현재 26-05adf의 Docker Compose 및 Backend 구조를 기준으로 작성하며, 구현에 존재하지 않는 Container나 통신 경로를 임의로 정의하지 않는다.
+본 문서는 현재 apms-sr 의 Docker Compose 및 Backend 구조를 기준으로 작성하며, 구현에 존재하지 않는 Container나 통신 경로를 임의로 정의하지 않는다.
 
 # 2. Container Overview
 

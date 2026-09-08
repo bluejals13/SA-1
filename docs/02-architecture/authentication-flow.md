@@ -3,7 +3,7 @@
 ## 1. 목적
 본 문서는 SA-1 Backend의 Authentication 처리 흐름을 정의한다.
 component.txt에서 정의한 Authentication Component를 기준으로 Login, 인증된 요청, Token Refresh, Logout의 처리 흐름을 설명한다.
-본 문서는 현재 26-05adf의 Authentication 구조를 기준으로 작성한다.
+본 문서는 현재 apms-sr 의 Authentication 구조를 기준으로 작성한다.
 
 ## 2. Authentication Flow Overview
 Authentication의 주요 흐름은 다음과 같다.

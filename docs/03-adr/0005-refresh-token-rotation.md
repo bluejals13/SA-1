@@ -7,13 +7,13 @@
 **Decision Type:** Architecture  
 **Related PRD:** PRD-SEC-002-refresh-token  
 **Related TASK:** TBD  
-**Related Repository:** `26-05adf`  
+**Related Repository:** `apms-sr`  
 
 ---
 
 ## 1. Context & Drivers
 
-APMS.SR 시스템은 `ADR-0004`에 따라 Access Token으로 짧은 수명(Short-lived)의 JWT를 사용한다. 
+apms-sr 시스템은 `ADR-0004`에 따라 Access Token으로 짧은 수명(Short-lived)의 JWT를 사용한다. 
 Access Token이 만료될 때마다 사용자가 다시 로그인하는 불편함을 방지하기 위해, 만료 기간이 긴 Refresh Token을 사용하여 새로운 Access Token을 발급받는 인증 갱신 메커니즘이 필요하다.
 
 그러나 Refresh Token이 탈취될 경우, 해커는 해당 토큰이 만료될 때까지 지속적으로 새로운 Access Token을 발급받아 시스템에 접근할 수 있는 보안 위협(Replay Attack)이 존재한다.
@@ -212,7 +212,7 @@ Access Token이 만료될 때마다 새로운 Refresh Token을 발급하고 저�
 * `docs/01-prd/security/PRD-SEC-002-refresh-token.md`
 
 ### Implementation
-* `26-05adf`
+* `apms-sr`
 
 ### Evidence
 * `PR-1A1`
@@ -221,7 +221,7 @@ Access Token이 만료될 때마다 새로운 Refresh Token을 발급하고 저�
 
 ## 10. Decision Summary
 
-> APMS.SR은 토큰 탈취 피해를 방어하고 보안성을 극대화하기 위해 **Strict Refresh Token Rotation(RTR)** 메커니즘을 채택한다.
+> apms-sr 은 토큰 탈취 피해를 방어하고 보안성을 극대화하기 위해 **Strict Refresh Token Rotation(RTR)** 메커니즘을 채택한다.
 > 
 > 사용자가 Access Token을 갱신할 때마다 기존 Refresh Token은 사용 완료(Invalidated) 상태로 전환하며, 
   해당 JTI와 invalidatedAt을 기록하여 일정 기간 보존한다. 이 상태는 Replay Detection을 위해 설정된 TTL 동안 보존된다.

@@ -5,13 +5,13 @@
 * **Decision Type:** Architecture
 * **Related PRD:** TBD
 * **Related TASK:** TBD
-* **Related Repository:** `26-05adf`
+* **Related Repository:** `apms-sr`
 
 ---
 
 ## 1. Context
 
-APMS.SR은 React 기반 Frontend와 Spring Boot 기반 Backend로 구성되는 Full-Stack Web Application이다.
+apms-sr 은 React 기반 Frontend와 Spring Boot 기반 Backend로 구성되는 Full-Stack Web Application이다.
 
 현재 시스템은 인증, 인가, 사용자 및 도메인 기능, 데이터 접근, 외부 인프라 연동, 모니터링 및 배포까지 하나의 서비스 흐름 안에서 관리해야 한다.
 
@@ -457,7 +457,7 @@ Microservices는 기술적 수준을 보여주기 위한 목적으로 도입하�
 
 ### Implementation
 
-* `26-05adf`
+* `apms-sr`
 
 ### Evidence
 

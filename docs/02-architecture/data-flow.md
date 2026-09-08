@@ -13,7 +13,7 @@
 * Token Invalidation State
 
 본 문서는 component.txt, authentication-flow.txt, authorization-flow.txt에서 정의한 Component 관계를 데이터 흐름 관점으로 구체화한다.
-현재 26-05adf의 Backend 구조를 기준으로 작성하며, 실제 구현에서 확인되지 않은 데이터 구조를 임의로 확정하지 않는다.
+현재 apms-sr 의 Backend 구조를 기준으로 작성하며, 실제 구현에서 확인되지 않은 데이터 구조를 임의로 확정하지 않는다.
 
 ## 2. Data Storage Overview
 현재 주요 데이터 저장소는 MySQL과 Redis로 구분한다.

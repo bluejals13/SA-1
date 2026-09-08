@@ -7,13 +7,13 @@
  **Decision Type:** Architecture\
  **Related PRD:** PRD-FUNC-002-user, PRD-FUNC-003-iam\
  **Related TASK:** TBD\
- **Related Repository:** `26-05adf`
+ **Related Repository:** `apms-sr`
 
 ---
 
  ## 1. Context & Drivers
 
- APMS.SR 시스템은 User, Role, Permission 및 이들 간의 관계 데이터를 영구적으로 저장하고 관리해야 한다.
+ apms-sr 시스템은 User, Role, Permission 및 이들 간의 관계 데이터를 영구적으로 저장하고 관리해야 한다.
 
  특히 IAM 영역에서는 사용자와 역할, 역할과 권한 사이의 관계를 명확하게 관리해야 하며, 데이터 생성·수정·삭제 과정에서 데이터 정합성과 무결성을 보장할 필요가 있다.
 
@@ -307,7 +307,7 @@ Redis
 
  ### Implementation
 
- - `26-05adf`
+ - `apms-sr`
 
  ### Evidence
 

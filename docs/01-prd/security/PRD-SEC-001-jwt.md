@@ -4,40 +4,40 @@
 ```txt
 
 # SEC-JWT-001 Access Token 발급
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthService.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/AuthService.java
 
 # SEC-JWT-002 Token 식별
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
 
 # SEC-JWT-003 무결성/진위 검증
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
 
 # SEC-JWT-004 만료 검증
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
 
 # SEC-JWT-005 Token Type 검증
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
 
 # SEC-JWT-006 사용자 식별
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
 
 # SEC-JWT-007 인증 정보 구성
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
 
 # SEC-JWT-008 현재 권한 정보 연계
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/UserAuthorityService.java
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/UserAuthorityService.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
 
 # SEC-JWT-009 유효하지 않은 Token 거부
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
 
 # SEC-JWT-010 인증 실패 격리
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/SecurityConfig.java
-https://github.com/bluejals13/26-05adf/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/SecurityConfig.java
+https://github.com/bluejals13/apms-sr/blob/feature/auth%400603%401401/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java
 
 
 ```

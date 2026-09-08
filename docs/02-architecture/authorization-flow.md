@@ -3,7 +3,7 @@
 ## 1. 목적
 본 문서는 인증된 사용자의 권한 정보를 기반으로 보호된 시스템 기능에 대한 접근을 판단하는 Authorization 처리 흐름을 정의한다.
 `authentication-flow.txt`에서 인증된 사용자의 Identity가 구성된 이후, User → Role → Permission 관계를 통해 권한이 결정되는 흐름을 설명한다.
-본 문서는 현재 26-05adf의 IAM 및 Security 구조를 기준으로 작성한다.
+본 문서는 현재 apms-sr의 IAM 및 Security 구조를 기준으로 작성한다.
 
 ## 2. Authorization Overview
 전체 Authorization 흐름은 다음과 같다.

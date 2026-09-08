@@ -3,7 +3,7 @@
 ## 1. 목적
 본 문서는 SA-1 Backend Container 내부의 주요 Application Component와 Component 간 의존 관계를 정의한다.
 
-container.txt에서 정의한 Backend Container를 내부 Component 수준으로 구체화하며, 현재 26-05adf의 실제 Package 및 Class 구조를 기준으로 작성한다.
+container.txt에서 정의한 Backend Container를 내부 Component 수준으로 구체화하며, 현재 apms-sr 의 실제 Package 및 Class 구조를 기준으로 작성한다.
 
 본 문서에서는 구현에 존재하지 않는 Component를 임의로 추가하지 않는다.
 
