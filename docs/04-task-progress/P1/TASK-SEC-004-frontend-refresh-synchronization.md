@@ -4,7 +4,7 @@
 - **Type:** `Verification`
 - **Status:** `TODO`
 - **Current Codebase State:** `IMPLEMENTED_BUT_UNVERIFIED`
-- **Target Repository:** `26-05adf` (Frontend)
+- **Target Repository:** `apms-sr` (Frontend)
 - **Date:** 2026-09-06
 
 ---
@@ -49,8 +49,8 @@
 
 | Phase | Target / Location | Verification Method | Status |
 | :--- | :--- | :--- | :---: |
-| **Implementation** | `26-05adf/frontend/src/api/http.ts` | 기존 Single Flight 코드 정적 점검 | `VERIFIED_CODE` |
-| **Test** | `26-05adf/frontend/src/api/__tests__/http.spec.ts` | Vitest 기반 동시 401 가로채기 테스트 코드 작성 | `PENDING` |
+| **Implementation** | `apms-sr/frontend/src/api/http.ts` | 기존 Single Flight 코드 정적 점검 | `VERIFIED_CODE` |
+| **Test** | `apms-sr/frontend/src/api/__tests__/http.spec.ts` | Vitest 기반 동시 401 가로채기 테스트 코드 작성 | `PENDING` |
 | **Execution** | `npm run test` (또는 `npx vitest run`) | 프론트엔드 테스트 스위트 실행 | `PENDING` |
 | **Evidence** | `Evidence Ledger v1.0.md` 연결 | 테스트 실행 결과 리포트 및 호출 카운트(1회) 로그 | `PENDING` |
 

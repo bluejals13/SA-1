@@ -58,7 +58,7 @@ Verification
 | CI/CD               | GitHub Actions                                |
 | Monitoring          | Prometheus, Grafana                           |
 
-`26-05adf`의 README에 명시된 현재 시스템 흐름은 다음과 같다.
+`apms-sr`의 README에 명시된 현재 시스템 흐름은 다음과 같다.
 
 ```text
 Browser
@@ -171,8 +171,8 @@ Claim
 
 | 정보       | Source of Truth               |
 | -------- | ----------------------------- |
-| 실제 코드    | `26-05adf`                    |
-| 실제 테스트   | `26-05adf`                    |
+| 실제 코드    | `apms-sr`                    |
+| 실제 테스트   | `apms-sr`                    |
 | 실제 실행 결과 | `PR-1A1` Evidence / Execution |
 | 설계 의사결정  | `SA-1` ADR                    |
 | 요구사항     | `SA-1` PRD                    |
@@ -221,4 +221,4 @@ Evidence
 * AI-assisted engineering workflow 기록
 * 운영 및 검증을 위한 프로세스 정의
 
-실제 구현은 `26-05adf`, 최종 검증 증거는 `PR-1A1`에서 관리한다.
+실제 구현은 `apms-sr`, 최종 검증 증거는 `PR-1A1`에서 관리한다.

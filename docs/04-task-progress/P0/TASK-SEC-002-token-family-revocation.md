@@ -4,7 +4,7 @@
 - **Type:** `Implementation & Verification`
 - **Status:** `TODO`
 - **Current Codebase State:** `NOT_IMPLEMENTED`
-- **Target Repository:** `26-05adf`
+- **Target Repository:** `apms-sr`
 - **Date:** 2026-09-06
 
 ---
@@ -63,8 +63,8 @@
 
 | Phase | Target / Location | Verification Method | Status |
 | :--- | :--- | :--- | :---: |
-| **Implementation** | `26-05adf/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java`<br>`26-05adf/backend/src/main/java/com/example/demo/auth/security/AuthService.java` | 코드 리뷰 및 정적 검증 | `PENDING` |
-| **Test** | `26-05adf/backend/src/test/java/com/example/demo/auth/security/TokenFamilyRevocationIntegrationTest.java` | JUnit 5 시나리오 테스트 코드 작성 | `PENDING` |
+| **Implementation** | `apms-sr/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java`<br>`apms-sr/backend/src/main/java/com/example/demo/auth/security/AuthService.java` | 코드 리뷰 및 정적 검증 | `PENDING` |
+| **Test** | `apms-sr/backend/src/test/java/com/example/demo/auth/security/TokenFamilyRevocationIntegrationTest.java` | JUnit 5 시나리오 테스트 코드 작성 | `PENDING` |
 | **Execution** | `./gradlew test --tests com.example.demo.auth.security.TokenFamilyRevocationIntegrationTest` | 실제 테스트 실행 및 로그 검증 | `PENDING` |
 | **Evidence** | `Evidence Ledger v1.0.md` (E-004, E-007) 연결 | 테스트 실행 리포트 및 Family Revoked 로그 | `PENDING` |
 

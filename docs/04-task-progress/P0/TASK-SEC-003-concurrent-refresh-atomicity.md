@@ -4,7 +4,7 @@
 - **Type:** `Verification`
 - **Status:** `TODO`
 - **Current Codebase State:** `IMPLEMENTED_BUT_UNVERIFIED`
-- **Target Repository:** `26-05adf`
+- **Target Repository:** `apms-sr`
 - **Date:** 2026-09-06
 
 ---
@@ -52,8 +52,8 @@
 
 | Phase | Target / Location | Verification Method | Status |
 | :--- | :--- | :--- | :---: |
-| **Implementation** | `26-05adf/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java` | 기존 인라인 Lua 스크립트 코드 정적 점검 | `VERIFIED_CODE` |
-| **Test** | `26-05adf/backend/src/test/java/com/example/demo/auth/security/ConcurrentRefreshIntegrationTest.java` | JUnit 5 다중 스레드 동시성 테스트 코드 신규 작성 | `PENDING` |
+| **Implementation** | `apms-sr/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java` | 기존 인라인 Lua 스크립트 코드 정적 점검 | `VERIFIED_CODE` |
+| **Test** | `apms-sr/backend/src/test/java/com/example/demo/auth/security/ConcurrentRefreshIntegrationTest.java` | JUnit 5 다중 스레드 동시성 테스트 코드 신규 작성 | `PENDING` |
 | **Execution** | `./gradlew test --tests com.example.demo.auth.security.ConcurrentRefreshIntegrationTest` | 실제 테스트 실행 및 동시 요청 결과 계측 | `PENDING` |
 | **Evidence** | `Evidence Ledger v1.0.md` (E-008, E-004) 연결 | 동시 요청 성공 1건 / 실패 N-1건 측정 로그 및 Redis 상태 확인 | `PENDING` |
 

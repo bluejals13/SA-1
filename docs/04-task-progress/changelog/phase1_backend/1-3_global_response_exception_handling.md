@@ -5,7 +5,7 @@
 - **Author:** AI Agent (Antigravity) & bluejck10113
 
 ## 1. 목적 (Purpose)
-* **프론트엔드 연동 최적화:** API의 응답 형식을 `status`, `message`, `data` 구조로 통일하여 React(Frontend)에서 `Axios Interceptor`를 통한 공통 에러 처리가 용이하도록 개선.
+* **프론트엔드 연동 최적화:** API의 응답 형식을 `status`, `message`, `data` 구조로 통일하여 React(Frontend)에서 `ReFetch Wrapper 의 Fetch`를 통한 공통 에러 처리가 용이하도록 개선.
 * **에러 메시지 캡슐화:** Spring Boot의 기본 에러 응답 트레이스가 클라이언트(브라우저)에 노출되는 보안 취약점을 차단.
 * **유지보수성 증대:** 비즈니스 예외 및 `@Valid` 예외를 `@RestControllerAdvice`에서 중앙 집중식으로 핸들링.
 

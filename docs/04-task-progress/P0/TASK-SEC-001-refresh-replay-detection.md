@@ -4,7 +4,7 @@
 - **Type:** `Implementation & Verification`
 - **Status:** `TODO`
 - **Current Codebase State:** `PARTIALLY_IMPLEMENTED`
-- **Target Repository:** `26-05adf`
+- **Target Repository:** `apms-sr`
 - **Date:** 2026-09-06
 
 ---
@@ -62,8 +62,8 @@
 
 | Phase | Target / Location | Verification Method | Status |
 | :--- | :--- | :--- | :---: |
-| **Implementation** | `26-05adf/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java`<br>`26-05adf/backend/src/main/java/com/example/demo/auth/security/AuthService.java` | 코드 리뷰 및 정적 검증 | `PENDING` |
-| **Test** | `26-05adf/backend/src/test/java/com/example/demo/auth/security/RefreshTokenReplayIntegrationTest.java` | JUnit 5 통합 테스트 코드 작성 | `PENDING` |
+| **Implementation** | `apms-sr/backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java`<br>`apms-sr/backend/src/main/java/com/example/demo/auth/security/AuthService.java` | 코드 리뷰 및 정적 검증 | `PENDING` |
+| **Test** | `apms-sr/backend/src/test/java/com/example/demo/auth/security/RefreshTokenReplayIntegrationTest.java` | JUnit 5 통합 테스트 코드 작성 | `PENDING` |
 | **Execution** | `./gradlew test --tests com.example.demo.auth.security.RefreshTokenReplayIntegrationTest` | 실제 테스트 실행 및 콘솔 출력 | `PENDING` |
 | **Evidence** | `Evidence Ledger v1.0.md` (E-004, E-005) 연결 | 테스트 결과 로그 및 Redis Key 덤프 | `PENDING` |
 

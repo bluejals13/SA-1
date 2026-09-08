@@ -27,4 +27,4 @@
 
 ### 3) 파편화 파일 정리 및 가이드라인 저장소 동기화
 * 레거시 및 중복 문서 삭제 완료.
-* `26-05adf-guideline/` 내 `architecture/`, `conventions/` 디렉터리 동기화 완료.
+* `apms-sr-guideline/` 내 `architecture/`, `conventions/` 디렉터리 동기화 완료.

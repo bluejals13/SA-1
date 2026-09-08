@@ -45,12 +45,12 @@ Refresh Token 동시 요청 공격 검증
 
 ## Target Repository
 
-26-05adf
+apms-sr
 
 ## Status
 
 TODO
 
-이제 이 문서를 보고 26-05adf에서 실제 작업하면 된다.
+이제 이 문서를 보고 apms-sr에서 실제 작업하면 된다.
 ```
 

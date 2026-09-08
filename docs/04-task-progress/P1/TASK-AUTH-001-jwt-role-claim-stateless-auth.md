@@ -4,7 +4,7 @@
 - **Type:** `Implementation & Verification`
 - **Status:** `TODO`
 - **Current Codebase State:** `PARTIALLY_IMPLEMENTED`
-- **Target Repository:** `26-05adf`
+- **Target Repository:** `apms-sr`
 - **Date:** 2026-09-06
 
 ---
@@ -54,8 +54,8 @@
 
 | Phase | Target / Location | Verification Method | Status |
 | :--- | :--- | :--- | :---: |
-| **Implementation** | `26-05adf/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java`<br>`26-05adf/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java` | 코드 리팩토링 및 정적 검증 | `PENDING` |
-| **Test** | `26-05adf/backend/src/test/java/com/example/demo/auth/jwt/JwtRoleClaimIntegrationTest.java` | JUnit 5 통합 테스트 및 쿼리 계측 작성 | `PENDING` |
+| **Implementation** | `apms-sr/backend/src/main/java/com/example/demo/auth/jwt/JwtProvider.java`<br>`apms-sr/backend/src/main/java/com/example/demo/auth/security/JwtAuthenticationFilter.java` | 코드 리팩토링 및 정적 검증 | `PENDING` |
+| **Test** | `apms-sr/backend/src/test/java/com/example/demo/auth/jwt/JwtRoleClaimIntegrationTest.java` | JUnit 5 통합 테스트 및 쿼리 계측 작성 | `PENDING` |
 | **Execution** | `./gradlew test --tests com.example.demo.auth.jwt.JwtRoleClaimIntegrationTest` | 실제 테스트 실행 및 Hibernate SQL 로그 확인 | `PENDING` |
 | **Evidence** | `Evidence Ledger v1.0.md` (E-003, E-006) 연결 | 쿼리 카운트 0건 확인 로그 및 테스트 결과 리포트 | `PENDING` |
 
