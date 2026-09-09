@@ -1,0 +1,55 @@
+
+# 기능 상의 03-adr/ 내부 문서 기반  분류 ID
+id: FEAT-RTR-001
+
+
+# ADR로 정의된 실제 구현 기능 명칭
+title: Refresh Token Rotation & Replay Defense
+
+
+# Architecture / Decision Source
+decision:
+  source:
+    repository: SA-1
+    id: ADR-0005
+    path: docs/03-adr/0005-refresh-token-rotation.md
+
+
+# 실제 구현 요소
+implementation:
+  repository: APMS-SR
+  paths:
+    - backend/src/main/java/com/example/demo/auth/security/RefreshTokenRepository.java
+    - backend/src/main/java/com/example/demo/auth/security/TokenBlacklistService.java
+
+
+# 실제 테스트 요소
+test:
+  repository: APMS-SR
+  paths:
+    - backend/src/test/java/com/example/demo/auth/security/RefreshTokenRepositoryTest.java
+    - backend/src/test/java/com/example/demo/auth/security/TokenBlacklistServiceTest.java
+
+
+# 실제 검증 요소
+# 검증 산출물이 실제 생성된 후 정확한 파일명으로 확정
+verification:
+  repository: PR-1A1
+  status: planned
+  paths: []
+
+
+# Portfolio Claim
+claim:
+  repository: PR-1A1
+  id: CLM_01
+  path: PRD-PO/claim/CLAIM_01_PROJECT_OVERVIEW.md
+
+presentation:
+  repository: PR-1A1
+  paths: []
+
+
+# 전체 기능의 현재 상태
+status: PLANNED
+

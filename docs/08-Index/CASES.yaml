@@ -1,0 +1,46 @@
+
+# 03-adr/ 내부 문서 기반 분류 id
+id: ADR-0A-RTR
+
+# ADR 로 실제 구현 요소 명칭 title
+title: Refresh Token Rotation
+
+# 03-adr/ 내부 문서 기반 
+decision:
+  source: SA-1/docs/03-adr/0005-refresh-token-rotation.md
+
+# APMS-SR 레포지토리 내 실제 구현 요소 path
+implementation:
+  repository: APMS-SR
+  path:
+    - backend/src/main/java/.../RefreshTokenRepository.java
+
+# APMS-SR 레포지토리 내 실제 테스트 요소 path
+test:
+  repository: APMS-SR
+  path:
+    - backend/src/test/java/.../RefreshTokenRepositoryTest.java
+
+# PR-1A1 레포지토리 내 실제 검증 요소 path
+verification:
+  path:
+    - verification/verification.md
+    - verification/01-runtime.png
+    - verification/02-redis-state.png
+    - verification/03-network.png
+
+# claim 주장 근거
+claim:
+  path:
+    - claim.md
+
+# presentation 발표 자료 path
+presentation:
+  path:
+    - presentation/RTR.pptx
+    - presentation/RTR.pdf
+    - presentation/RTR.html
+
+# 총 전체 해당 기능에 대한 현재 상태 
+status: VERIFIED
+
