@@ -10,7 +10,8 @@ decision:
   - ADR-0005
 
 implementation:
-  - IMP-RTR-001
+  - IMPL-RTR-001
+  - IMPL-RTR-002
 
 tests:
   - TEST-RTR-001
@@ -22,10 +23,10 @@ verification:
   - VER-RTR-001
 
 evidence:
-  - EVD-RTR-001
-  - EVD-RTR-002
+  - ev-auth-rtr
+  - ev-auth-blacklist
 
 claims:
-  - CLM-RTR-001
+  - CLM_01
 
-status: verified
+status: planned
