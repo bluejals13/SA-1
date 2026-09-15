@@ -1,4 +1,7 @@
 
+# FEAT-RTR-001
+
+
 # 기능 상의 03-adr/ 내부 문서 기반  분류 ID
 id: FEAT-RTR-001
 
@@ -50,6 +53,12 @@ presentation:
   paths: []
 
 
-# 전체 기능의 현재 상태
-status: PLANNED
+# 각 부분에 대한 위 기능의 현재 상태
+status:
+  implementation: IMPLEMENTED
+  test: VERIFIED
+  verification: PLANNED
+  claim: EXISTING
+  presentation: PLANNED
+
 
