@@ -1,0 +1,110 @@
+
+# FEAT-RBAC-001 APMS.SR IAM / Data Evidence Index
+
+
+# 기능 상의 03-adr/ 내부 문서 기반  분류 ID
+id: FEAT-RBAC-001
+
+
+
+acceptance-criteria:
+  source:
+    repository: SA-1
+    id: AC-003-rbac
+    path: docs/01-prd/acceptance-criteria/AC-003-rbac.md
+
+
+
+functional:
+  source:
+    repository: SA-1
+    id: PRD-FUNC-003-iam
+    path: docs/01-prd/functional/PRD-FUNC-003-iam.md
+
+
+
+# Architecture
+architecture:
+  source:
+    repository: SA-1
+    id: ADR-0006
+    path: docs/02-architecture/authorization-flow.md
+
+
+
+# Decision Source
+decision:
+  source:
+    repository: SA-1
+    id: ADR-0006
+    path: docs/03-adr/ADR-0006-rbac.md
+
+
+
+# 실제 구현 요소
+implementation:
+  repository: apms-sr
+  paths:
+    - backend/src/main/java/com/example/demo/iam/admin/
+    - backend/src/main/java/com/example/demo/iam/menu/
+    - backend/src/main/java/com/example/demo/iam/role/
+    - backend/src/main/java/com/example/demo/iam/permission/
+    - backend/src/main/java/com/example/demo/iam/user/
+
+
+# Automated 실제 테스트 요소
+test:
+  repository: apms-sr
+  paths:
+    - backend/src/test/java/com/example/demo/iam/permission/PermissionAdminServiceTest.java
+    - backend/src/test/java/com/example/demo/iam/permission/PermissionIntegrationTest.java
+    - backend/src/test/java/com/example/demo/iam/permission/PermissionRepositoryTest.java
+    - backend/src/test/java/com/example/demo/iam/permission/RbacSecurityIntegrationTest.java
+    - backend/src/test/java/com/example/demo/iam/permission/RoleAdminServiceTest.java
+    - backend/src/test/java/com/example/demo/iam/permission/RolePermissionIntegrationTest.java
+    - backend/src/test/java/com/example/demo/iam/permission/RolePermissionServiceTest.java
+    - backend/src/test/java/com/example/demo/iam/permission/RoleRepositoryTest.java
+    - backend/src/test/java/com/example/demo/iam/menu/MenuSecurityIntegrationTest.java
+
+
+
+metrics:
+  source:
+    repository: SA-1
+    id: ADR-0006
+    path: docs/02-architecture/authorization-flow.md
+
+
+
+Runtime
+→ Runtime Evidence Excel / RBAC-RT-001
+
+
+# 실제 검증 요소
+# 검증 산출물이 실제 생성된 후 정확한 파일명으로 확정
+verification:
+  repository: apms-sr
+  status: planned
+  paths: []
+
+
+# Portfolio Claim
+claim:
+  repository: PR-1A1
+  id: CLM_01
+  path: PRD-PO/claim/CLAIM_01_PROJECT_OVERVIEW.md
+
+presentation:
+  repository: PR-1A1
+  paths: []
+
+
+# 각 부분에 대한 위 기능의 현재 상태
+status:
+  implementation: IMPLEMENTED
+  test: VERIFIED
+  verification: PLANNED
+  claim: EXISTING
+  presentation: PLANNED
+
+
