@@ -7,9 +7,9 @@
 
  | 저장소 | 로그 분류 코드 | 해당 연결 주소 |
 | --- | --- | --- |
-| SA-1 | [AC-003-rbac\](docs/01-prd/acceptance-criteria/AC-003-rbac.md) | "\[AC-003-rbac\]"`(docs/01-prd/acceptance-criteria/AC-003-rbac.md)` |
-| SA-1 | [PRD-FUNC-003-iam](docs/01-prd/functional/PRD-FUNC-003-iam.md) | "\[PRD-FUNC-003-iam\]"`(docs/01-prd/functional/PRD-FUNC-003-iam.md)` |
-| SA-1 | [0006-rbac](docs/03-adr/0006-rbac.md) | "\[0006-rbac\]"`(docs/03-adr/0006-rbac.md)` |
+| SA-1 | [AC-003-rbac](https://github.com/bluejals13/SA-1/blob/main/docs/01-prd/acceptance-criteria/AC-003-rbac.md) | "\[AC-003-rbac\]"`(docs/01-prd/acceptance-criteria/AC-003-rbac.md)` |
+| SA-1 | [PRD-FUNC-003-iam](https://github.com/bluejals13/SA-1/blob/main/docs/01-prd/functional/PRD-FUNC-003-iam.md) | "\[PRD-FUNC-003-iam\]"`(docs/01-prd/functional/PRD-FUNC-003-iam.md)` |
+| SA-1 | [0006-rbac](https://github.com/bluejals13/SA-1/blob/main/docs/03-adr/0006-rbac.md) | "\[0006-rbac\]"`(docs/03-adr/0006-rbac.md)` |
 
 # 2\. apms-sr 의 각 도메인 단위 분리 폴더
 
