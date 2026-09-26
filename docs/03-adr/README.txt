@@ -1,7 +1,7 @@
 
 # 5. 03-adr/
 ```txt
-여기가 네가 말한 ADR.
+ADR.
 
 03-adr/
 ├─ README.md

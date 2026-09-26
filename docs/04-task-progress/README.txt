@@ -1,7 +1,7 @@
 
 # 6. 04-task-progress/
 ```txt
-여기가 실제 작업 목록.
+실제 작업 목록.
 
 04-task-progress/
 ├─ README.md
